@@ -10,13 +10,16 @@
 ;;   (add-hook 'php-mode-hook 'flymake-php-load)
 (require 'flymake)
 
+;;; Code:
+
 (defconst flymake-php-err-line-patterns '(("\\(?:Parse\\|Fatal\\|syntax\\) error[:,] \\(.*\\) in \\(.*\\) on line \\([0-9]+\\)" 2 3 nil 1)))
 
 (defvar flymake-php-executable "php"
-  "The php executable to use for syntax checking")
+  "The php executable to use for syntax checking.")
 
 ;; Invoke php with '-f' to get syntax checking
 (defun flymake-php-init ()
+  "Construct a command that flymake can use to check php source."
   (list flymake-php-executable
         (list "-f" (flymake-init-create-temp-buffer-copy
                     'flymake-create-temp-inplace) "-l")))
@@ -26,8 +29,8 @@
   "Configure flymake mode to check the current buffer's php syntax.
 
 This function is designed to be called in `php-mode-hook'; it
-does not alter flymake's global configuration, so `flymake-mode'
-alone will not suffice."
+does not alter flymake's global configuration, so function
+`flymake-mode' alone will not suffice."
   (interactive)
   (set (make-local-variable 'flymake-allowed-file-name-masks) '(("." flymake-php-init)))
   (set (make-local-variable 'flymake-err-line-patterns) flymake-php-err-line-patterns)
