@@ -17,12 +17,20 @@
 (defvar flymake-php-executable "php"
   "The php executable to use for syntax checking.")
 
+(defun flymake-php--create-temp-in-system-tempdir (file-name prefix)
+  "Return a temporary file name into which flymake can save buffer contents.
+
+This is tidier than `flymake-create-temp-inplace', and therefore
+preferable when the checking doesn't depend on the file's exact
+location."
+  (make-temp-file (or prefix "flymake-php") nil ".php"))
+
 ;; Invoke php with '-f' to get syntax checking
 (defun flymake-php-init ()
   "Construct a command that flymake can use to check php source."
   (list flymake-php-executable
         (list "-f" (flymake-init-create-temp-buffer-copy
-                    'flymake-create-temp-inplace) "-l")))
+                    'flymake-php--create-temp-in-system-tempdir) "-l")))
 
 ;;;###autoload
 (defun flymake-php-load ()
