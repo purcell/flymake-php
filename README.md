@@ -21,7 +21,7 @@ Add the following to your emacs init file:
     (add-hook 'php-mode-hook 'flymake-php-load)
 
 [marmalade]: http://marmalade-repo.org
-[melpa]: http://melpa.milkbox.net
+[melpa]: http://melpa.org
 
 <hr>
 
