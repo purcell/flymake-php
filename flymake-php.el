@@ -1,10 +1,25 @@
 ;;; flymake-php.el --- A flymake handler for php-mode files
-;;
-;;; Author: Steve Purcell <steve@sanityinc.com>
-;;; URL: https://github.com/purcell/flymake-php
-;;; Version: DEV
-;;; Package-Requires: ((flymake-easy "0.1"))
-;;;
+
+;; Copyright (c) 2011-2017 Steve Purcell
+
+;; Author: Steve Purcell <steve@sanityinc.com>
+;; URL: https://github.com/purcell/flymake-php
+;; Package-Version: 0
+;; Package-Requires: ((flymake-easy "0.1"))
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ;;; Commentary:
 ;; Usage:
 ;;   (require 'flymake-php)
@@ -22,7 +37,7 @@
   "The php executable to use for syntax checking.")
 
 (defun flymake-php-command (filename)
-  "Construct a command that flymake can use to check php source."
+  "Construct a command that flymake can use to check php source in FILENAME."
   (list flymake-php-executable "-l" "-f" filename))
 
 ;;;###autoload
